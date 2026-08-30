@@ -1,0 +1,73 @@
+ชื่อหลักสูตรของคณะวิศวกรรมศาสตร์
+
+degree  Major                           วุฒิปริญญา  สาขา
+B.Eng.  Civil Engineering               วศ.บ.       วิศวกรรมโยธา
+B.Eng.  Electrical Engineering          วศ.บ.       วิศวกรรมไฟฟ้า
+B.Eng.  Agricultural Engineering        วศ.บ.       วิศวกรรมเกษตร
+B.Eng.  Industrial Engineering          วศ.บ.       วิศวกรรมอุตสาหการ
+B.Eng.  Mechanical Engineering          วศ.บ.       วิศวกรรมเครื่องกล
+B.Eng.  Environment Engineering         วศ.บ.       วิศวกรรมสิ่งแวดล้อม
+B.Eng.  Chemical Engineering            วศ.บ.       วิศวกรรมเคมี
+B.Eng.  Computer Engineering            วศ.บ.       วิศวกรรมคอมพิวเตอร์
+B.Eng.  Automation Robotics and         วศ.บ.       วิศวกรรมอัตโนมัติ หุ่นยนต์
+        Intelligent System Engineering              และระบบอัจฉริยะ
+B.Eng.  Electronic Systems Engineering  วศ.บ.       วิศวกรรมอิเล็กทรอนิกส์
+B.Eng.  High Speed Rail Engineering     วศ.บ.       วิศวกรรมรถไฟความเร็วสูง
+B.Eng.  Semiconductor Engineering       วศ.บ.       วิศวกรรมเซมิคอนดักเตอร์
+B.Eng.  Electrical Communications       วศ.บ.       วิศวกรรมไฟฟ้าสื่อสาร
+        Engineering
+B.Eng.  Chemical Engineering            วศ.บ.       วิศวกรรมเคมี (หลักสูตรนานาชาติ)
+        (International Program)
+B.Eng.  Digital Media Engineering       วศ.บ.       วิศวกรรมเคมี (หลักสูตรนานาชาติ)
+        (International Program)
+B.Eng.  Logistics Engineering           วศ.บ.       วิศวกรรมโลจิสติกส์
+        (International Program)                     (หลักสูตรนานาชาติ)
+B.Eng.  Telecommunications              วศ.บ.       วิศวกรรมโทรคมนาคม
+        Engineering (International                  (หลักสูตรนานาชาติ)
+M.Eng.  Program)                        วศ.ม.
+M.Eng.  Civil Engineering               วศ.ม.       วิศวกรรมโยธา
+M.Eng.  Electrical Engineering          วศ.ม.       วิศวกรรมไฟฟ้า
+M.Eng.  Agricultural Engineering        วศ.ม.       วิศวกรรมเกษตร
+M.Eng.  Industrial Engineering          วศ.ม.       วิศวกรรมอุตสาหการ
+M.Eng.  Mechanical Engineering          วศ.ม.       วิศวกรรมเครื่องกล
+M.Eng.  Environment Engineering         วศ.ม.       วิศวกรรมสิ่งแวดล้อม
+M.Eng.  Chemical Engineering            วศ.ม.       วิศวกรรมเคมี
+M.Eng.  Computer Engineering            วศ.ม.       วิศวกรรมคอมพิวเตอร์
+M.Eng.  Energy Engineering              วศ.ม.       วิศวกรรมพลังงาน
+        Industrial and Logistics                    วิศวกรรมการจัดการอุตสาหกรรมและ
+        Engineering Management                      โลจิสติกส์
+degree  Major                                วุฒิปริญญา  สาขา
+M.Eng.  Materials and Manufacturing          วศ.ม.       วิศวกรรมวัสดุและการผลิต
+        Engineering
+M.Eng.  Biomedical Engineering               วศ.ม.       วิศวกรรมชีวการแพทย์
+M.Eng.  Water Resource Management            วศ.ม.       การจัดการทรัพยากรน้ำ
+M.Eng.  Construction Management              วศ.ม.       วิศวกรรมนวัตกรรมบริหารงานก่อสร้า
+        Innovation Engineering                           ง
+M.Eng.  BCG Economic Development             วศ.ม.       วิศวกรรมนวัตกรรมการพัฒนาเศรษฐ
+        Innovation Engineering                           กิจ BCG
+M.Eng.  Digital and Artificial intelligence  วศ.ม.       วิศวกรรมนวัตกรรมดิจิทัลและปัญญา
+        Innovation Engineering                           ประดิษฐ์
+M.Eng.  Financial Innovation Engineering     วศ.ม.       วิศวกรรมนวัตกรรมการเงิน
+M.Eng.  Smart City Development               วศ.ม.       วิศวกรรมนวัตกรรมการพัฒนาเมืองอั
+        Innovation Engineering                           จฉริยะ
+Ph.D.   Civil Engineering                    ปร.ด.       วิศวกรรมโยธา
+Ph.D.   Electrical Engineering               ปร.ด.       วิศวกรรมไฟฟ้า
+Ph.D.   Agricultural Engineering             ปร.ด.       วิศวกรรมเกษตร
+Ph.D.   Industrial Engineering               ปร.ด.       วิศวกรรมอุตสาหการ
+Ph.D.   Mechanical Engineering               ปร.ด.       วิศวกรรมเครื่องกล
+Ph.D.   Environment Engineering              ปร.ด.       วิศวกรรมสิ่งแวดล้อม
+Ph.D.   Chemical Engineering                 ปร.ด.       วิศวกรรมเคมี
+Ph.D.   Computer Engineering                 ปร.ด.       วิศวกรรมคอมพิวเตอร์
+Ph.D.   Energy Engineering                   ปร.ด.       วิศวกรรมพลังงาน
+Ph.D.   Biomedical Engineering               ปร.ด.       วิศวกรรมชีวการแพทย์
+Ph.D.   Water Resource Management            ปร.ด.       การจัดการทรัพยากรน้ำ
+Ph.D.   Construction Management              ปร.ด.       วิศวกรรมนวัตกรรมบริหารงานก่อสร้า
+        Innovation Engineering                           ง
+Ph.D.   BCG Economic Development             ปร.ด.       วิศวกรรมนวัตกรรมการพัฒนาเศรษฐ
+        Innovation Engineering                           กิจ BCG
+Ph.D.   Digital and Artificial intelligence  ปร.ด.       วิศวกรรมนวัตกรรมดิจิทัลและปัญญา
+        Innovation Engineering                           ประดิษฐ์
+Ph.D.   Financial Innovation Engineering     ปร.ด.       วิศวกรรมนวัตกรรมการเงิน
+Ph.D.   Smart City Development               ปร.ด.       วิศวกรรมนวัตกรรมการพัฒนาเมืองอั
+        Innovation Engineering                           จฉริยะ
+

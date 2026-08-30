@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ENGiTRACK by ENKKU | Intelligent International Student Monitoring & Early Warning System (ระบบติดตามสถานะและความก้าวหน้าของนักศึกษาต่างชาติ คณะวิศวกรรมศาสตร์)</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            maroon: {
+              50: '#fdf2f4',
+              100: '#fbe6e9',
+              200: '#f7d0d6',
+              300: '#f0abb6',
+              400: '#e5778a',
+              500: '#d44962',
+              600: '#bc2e48',
+              700: '#8a1428',
+              800: '#6b0d1e',
+              900: '#420712',
+              950: '#260209',
+            },
+            gold: {
+              300: '#f3e5ab',
+              400: '#e5c365',
+              500: '#d4af37',
+              600: '#cba135',
+              700: '#aa7c11',
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Prompt', 'sans-serif'],
+            thai: ['Prompt', 'Sarabun', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Prompt:wght@300;400;500;600;700;800&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Official KKU AI Chatbot Widget (ENIR-Buddy) -->
+  <script type="module" src="https://gen.ai.kku.ac.th/widget/chat-widget.es.js?fbclid=IwcGRvZgVleHRuA2FlbQIxMABicmlkETFXMkd6SWVxVjRiQW8wWTQ3c3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHrGAkuMQjVnMb7VoXGp9e0vhsyDafufe1v94hMOoSYZfeD44xkFXvEAwAYP__aem_gxoWBjOK2gt3TY4UXH54HA" defer></script>
+  <script type="module" src="kku-chat-widget.js"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col font-sans">
+
+  <!-- Top Synthetic Data Banner (Hackathon Requirement) -->
+  <div class="synthetic-banner py-1.5 px-4 text-center text-xs font-semibold flex items-center justify-center gap-2">
+    <span class="inline-block w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+    <span>
+      <strong>DEMO DATA | SYNTHETIC DATA — For Demonstration Only</strong> 
+      <span class="opacity-80 font-thai text-[11px]">/ ข้อมูลจำลอง 100% เพื่อการสาธิตเท่านั้น (KKU AI Hackathon 2026 • Team ENnovation)</span>
+    </span>
+  </div>
+
+  <!-- Luxury Crimson Header (Dual Language: English Primary + Thai Secondary) -->
+  <header class="glass-header text-white sticky top-0 z-40 shadow-lg">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand / Title -->
+        <div class="flex items-center gap-3.5 cursor-pointer" onclick="scrollToSection('section-overview')">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-gold p-0.5 shadow-md flex items-center justify-center">
+            <div class="w-full h-full bg-maroon-900 rounded-[14px] flex items-center justify-center">
+              <i data-lucide="shield-alert" class="w-6 h-6 text-gold-accent"></i>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="text-xl sm:text-2xl font-black tracking-tight text-white flex items-center gap-1.5">
+                ENGiTRACK <span class="text-gold-accent font-medium text-sm sm:text-base">by ENKKU</span>
+              </h1>
+              <span class="hidden sm:inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-maroon-700/80 border border-gold-accent/40 text-gold-300">
+                AI Early Warning
+              </span>
+            </div>
+            <p class="text-[11px] sm:text-xs text-rose-200/95 font-medium truncate max-w-[340px] sm:max-w-2xl">
+              Intelligent International Student Monitoring & Early Warning System 
+              <span class="text-gold-300/90 font-thai text-[10.5px]">/ ระบบติดตามสถานะและความก้าวหน้าของนักศึกษาต่างชาติ คณะวิศวกรรมศาสตร์</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Controls: High-Contrast Role Perspective Switcher -->
+        <div class="flex items-center gap-3">
+          <div class="role-switcher-box flex items-center gap-1">
+            <button onclick="setRole('admin')" data-role="admin" class="role-tab-btn active" title="Switch to Admin / Officer view">
+              <span>Admin / Officer</span>
+              <span class="role-sub-label">เจ้าหน้าที่</span>
+            </button>
+            <button onclick="setRole('student')" data-role="student" class="role-tab-btn" title="Switch to Student view">
+              <span>Student View</span>
+              <span class="role-sub-label">นักศึกษา</span>
+            </button>
+            <button onclick="setRole('advisor')" data-role="advisor" class="role-tab-btn" title="Switch to Advisor view">
+              <span>Advisor View</span>
+              <span class="role-sub-label">อาจารย์ที่ปรึกษา</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Sticky Quick Anchor Nav Bar (Visible in Officer View) -->
+  <nav id="single-page-nav" class="bg-maroon-900 border-b border-maroon-800/80 text-rose-100 text-xs font-medium sticky top-20 z-30 shadow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-2 overflow-x-auto py-2 no-scrollbar">
+        <button onclick="scrollToSection('section-overview')" class="nav-anchor-btn bg-maroon-800 text-gold-accent font-semibold px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 whitespace-nowrap shadow-xs">
+          <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i>
+          <span>Overview <span class="text-[10px] font-thai opacity-80">(ภาพรวม)</span></span>
+        </button>
+        <button onclick="scrollToSection('section-triggers')" class="nav-anchor-btn hover:bg-maroon-800/60 px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 whitespace-nowrap">
+          <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i>
+          <span>Early Warning & Diversity <span class="text-[10px] font-thai opacity-80">(เตือนภัย & กราฟประเทศ)</span></span>
+        </button>
+        <button onclick="scrollToSection('section-roster')" class="nav-anchor-btn hover:bg-maroon-800/60 px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 whitespace-nowrap">
+          <i data-lucide="users" class="w-3.5 h-3.5"></i>
+          <span>Student Master Roster <span class="text-[10px] font-thai opacity-80">(ทะเบียนนักศึกษา)</span></span>
+        </button>
+        <button onclick="scrollToSection('section-calendar')" class="nav-anchor-btn hover:bg-maroon-800/60 px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 whitespace-nowrap">
+          <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+          <span>Google Calendar & Visa <span class="text-[10px] font-thai opacity-80">(ปฏิทินวีซ่า)</span></span>
+        </button>
+        <button onclick="scrollToSection('section-helpdesk')" class="nav-anchor-btn hover:bg-maroon-800/60 px-3.5 py-1.5 rounded-lg transition flex items-center gap-1.5 whitespace-nowrap">
+          <i data-lucide="help-circle" class="w-3.5 h-3.5"></i>
+          <span>Help Desk Queue <span class="text-[10px] font-thai opacity-80">(คิวคำร้อง)</span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Dynamic Role Content Area -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-8">
+    <div id="unified-content-area"></div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-400 text-xs py-6 border-t border-slate-800 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-maroon-600"></span>
+        <span class="font-semibold text-slate-300">ENGiTRACK by ENKKU</span> — KKU AI Hackathon 2026
+        <span class="text-slate-500 font-thai text-[11px]">(ระบบติดตามสถานะและความก้าวหน้าของนักศึกษาต่างชาติ คณะวิศวกรรมศาสตร์)</span>
+      </div>
+      <div class="text-center md:text-right text-slate-500">
+        Team ENnovation: Passaraporn Danthanathorn • Thipakorn Chaisong • Nattha Saksilaporn<br>
+        Faculty of Engineering, Khon Kaen University
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       MODALS & DIALOGS
+       ========================================================================= -->
+
+  <!-- 1. STUDENT 360° PROFILE MODAL -->
+  <div id="student-detail-modal" class="fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-slate-200 relative animate-in fade-in zoom-in-95 duration-200">
+      <div id="student-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- 2. ADVISOR PROFILE & ADVISEES MODAL -->
+  <div id="advisor-detail-modal" class="fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-slate-200 relative animate-in fade-in zoom-in-95 duration-200">
+      <div id="advisor-modal-body"></div>
+    </div>
+  </div>
+
+  <!-- 3. INTERACTIVE EMAIL PREVIEW & EDITOR MODAL (BILINGUAL) -->
+  <div id="email-preview-modal" class="fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl border border-slate-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      
+      <!-- Modal Header -->
+      <div class="bg-gradient-maroon text-white p-5 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-gold-accent/20 flex items-center justify-center text-gold-accent">
+            <i data-lucide="mail" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm sm:text-base text-white">
+              Compose & Preview Warning Email 
+              <span class="block text-xs font-thai text-rose-200 font-normal">ตรวจสอบและแก้ไขอีเมลแจ้งเตือนก่อนส่ง</span>
+            </h3>
+          </div>
+        </div>
+        <button onclick="closeEmailModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-5 space-y-4 text-xs">
+        
+        <!-- Recipient Checkboxes -->
+        <div>
+          <label class="block font-bold text-slate-800 mb-1.5">
+            Select Recipients: <span class="font-thai font-normal text-slate-500 text-[11px]">(เลือกผู้รับอีเมล)</span>
+          </label>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="email-check-student" checked class="rounded text-maroon-700 focus:ring-maroon-700" />
+              <span class="text-slate-800"><strong>Student (นักศึกษา):</strong> <span id="email-to-student" class="text-slate-500 truncate"></span></span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="email-check-main-adv" checked class="rounded text-maroon-700 focus:ring-maroon-700" />
+              <span class="text-slate-800"><strong>Main Advisor (ที่ปรึกษาหลัก):</strong> <span id="email-to-main-adv" class="text-slate-500 truncate"></span></span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="email-check-co-adv" checked class="rounded text-maroon-700 focus:ring-maroon-700" />
+              <span class="text-slate-800"><strong>Co-Advisor (ที่ปรึกษาร่วม):</strong> <span id="email-to-co-adv" class="text-slate-500 truncate"></span></span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" id="email-check-officer" checked class="rounded text-maroon-700 focus:ring-maroon-700" />
+              <span class="text-slate-800">CC International Relations Officer <span class="font-thai text-[10px]">(เจ้าหน้าที่)</span></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Additional / Alternate Email Input (Requested Feature for QQ / 163 / Abroad Mail) -->
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="block font-bold text-slate-800">
+              Additional / Alternate Email Addresses <span class="font-thai font-normal text-slate-500 text-[11px]">(ระบุอีเมลส่วนตัว / อีเมลสำรองเพิ่มเติม)</span>
+            </label>
+            <span class="text-[10px] text-amber-800 bg-amber-100 px-2 py-0.5 rounded-full font-bold">
+              🇨🇳 QQ Mail / 163 Mail / Personal Mail
+            </span>
+          </div>
+          <input 
+            type="text" 
+            id="email-custom-input" 
+            placeholder="e.g. student_personal@qq.com, alternate@163.com (พิมพ์อีเมลเพิ่มได้ตามต้องการ คั่นด้วยจุลภาค ,)" 
+            class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 focus:outline-none focus:border-maroon-700 focus:ring-2 focus:ring-maroon-700/20"
+          />
+          <p class="text-[10.5px] text-slate-500 font-thai mt-1">
+            💡 สำหรับกรณีนักศึกษาเดินทางกลับประเทศและไม่สามารถเข้าถึง KKU Mail ได้ เจ้าหน้าที่สามารถพิมพ์อีเมลส่วนตัว (เช่น QQ, 163, Gmail) เพื่อส่งแจ้งเตือนคู่ขนานได้ทันที
+          </p>
+        </div>
+
+        <!-- Subject -->
+        <div>
+          <label class="block font-bold text-slate-800 mb-1">
+            Email Subject <span class="font-thai font-normal text-slate-500 text-[11px]">(หัวข้ออีเมล)</span>
+          </label>
+          <input type="text" id="email-subject-input" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs font-semibold text-slate-800 focus:outline-none focus:border-maroon-700 focus:ring-2 focus:ring-maroon-700/20" />
+        </div>
+
+        <!-- Body Template Editor -->
+        <div>
+          <label class="block font-bold text-slate-800 mb-1">
+            Email Message Body (Editable Template) <span class="font-thai font-normal text-slate-500 text-[11px]">(เนื้อหาข้อความอีเมล - แก้ไขได้)</span>
+          </label>
+          <textarea id="email-body-input" rows="8" class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-xs text-slate-800 font-mono leading-relaxed focus:outline-none focus:border-maroon-700 focus:ring-2 focus:ring-maroon-700/20"></textarea>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+          <button onclick="closeEmailModal()" class="px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-100 font-bold transition">
+            ← Cancel (ยกเลิก)
+          </button>
+          <button onclick="sendEmailConfirmation()" class="bg-gradient-maroon text-white px-5 py-2.5 rounded-xl font-bold shadow-lg hover:opacity-95 transition flex items-center gap-2">
+            <i data-lucide="send" class="w-4 h-4"></i>
+            <span>Send Email Notification (ยืนยันส่งอีเมล)</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. IMPORT CSV MODAL (REQUESTED FEATURE) -->
+  <div id="import-csv-modal" class="fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl max-w-xl w-full shadow-2xl border border-slate-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+      
+      <!-- Header -->
+      <div class="bg-gradient-maroon text-white p-5 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-xl bg-gold-accent/20 flex items-center justify-center text-gold-accent">
+            <i data-lucide="file-spreadsheet" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-sm sm:text-base text-white">
+              Import Student Data (CSV)
+              <span class="block text-xs font-thai text-rose-200 font-normal">นำเข้าข้อมูลนักศึกษาต่างชาติจากไฟล์ CSV</span>
+            </h3>
+          </div>
+        </div>
+        <button onclick="closeImportCsvModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Body -->
+      <div class="p-6 space-y-4 text-xs">
+        <p class="text-slate-600 leading-relaxed">
+          Use this tool to import student attributes that cannot be automatically retrieved from the Registrar's database (e.g. external scholarships, advisor appointments, visa updates).
+          <span class="block font-thai text-slate-500 text-[11px] mt-1">นำเข้าข้อมูลเพิ่มเติมสำหรับข้อมูลที่ไม่สามารถดึงได้จากฐานข้อมูลของสำนักทะเบียน</span>
+        </p>
+
+        <!-- Dropzone / File Picker -->
+        <div onclick="document.getElementById('csv-file-picker').click()" class="border-2 border-dashed border-maroon-300 bg-maroon-50/30 hover:bg-maroon-50/60 transition rounded-2xl p-6 text-center cursor-pointer flex flex-col items-center justify-center gap-2">
+          <div class="w-12 h-12 rounded-2xl bg-maroon-100 text-maroon-800 flex items-center justify-center">
+            <i data-lucide="upload-cloud" class="w-6 h-6"></i>
+          </div>
+          <div class="font-bold text-slate-800 text-sm">
+            Click to upload or drag & drop CSV file
+          </div>
+          <div class="text-[11px] text-slate-500 font-thai">
+            รองรับไฟล์ .CSV (UTF-8) ตามรูปแบบคอลัมน์มาตรฐาน
+          </div>
+          <span id="selected-csv-filename" class="text-xs font-bold text-maroon-700 mt-1 hidden"></span>
+        </div>
+
+        <input type="file" id="csv-file-picker" accept=".csv" class="hidden" onchange="handleCsvFileSelected(event)" />
+
+        <!-- Preview Area -->
+        <div id="csv-preview-container" class="hidden bg-slate-50 p-3 rounded-xl border border-slate-200">
+          <div class="font-bold text-slate-800 mb-1 flex items-center justify-between">
+            <span>Data Preview (ตัวอย่างข้อมูล):</span>
+            <span id="csv-records-count" class="text-[11px] font-mono text-emerald-700 font-bold"></span>
+          </div>
+          <div id="csv-preview-content" class="font-mono text-[10px] text-slate-600 max-h-28 overflow-y-auto bg-white p-2 rounded-lg border border-slate-100"></div>
+        </div>
+
+        <!-- Sample Template Link -->
+        <div class="flex items-center justify-between pt-2 border-t border-slate-100 text-[11px]">
+          <button onclick="downloadSampleCsvTemplate()" class="text-maroon-700 font-bold hover:underline flex items-center gap-1">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i> Download Sample CSV Template (ดาวน์โหลดตัวอย่างไฟล์)
+          </button>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex items-center justify-between pt-2">
+          <button onclick="closeImportCsvModal()" class="px-4 py-2 rounded-xl text-slate-600 hover:bg-slate-100 font-bold transition">
+            Cancel (ยกเลิก)
+          </button>
+          <button onclick="confirmCsvImport()" id="btn-confirm-import" class="bg-gradient-maroon text-white px-5 py-2.5 rounded-xl font-bold shadow hover:opacity-95 transition flex items-center gap-2 disabled:opacity-50" disabled>
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>Confirm & Import Data (ยืนยันนำเข้าข้อมูล)</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. GOOGLE SHEETS INTEGRATION & LIVE SYNC MODAL -->
+  <div id="google-sheets-modal" class="fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl max-w-2xl w-full shadow-2xl border border-slate-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] flex flex-col">
+      
+      <!-- Header -->
+      <div class="bg-gradient-maroon text-white p-5 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-2xl bg-emerald-500/30 border border-emerald-400/50 flex items-center justify-center text-emerald-300 shadow-md">
+            <i data-lucide="table" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-black text-base">Google Sheets Integration Hub</h3>
+            <p class="text-xs text-rose-200 font-thai">เชื่อมต่อฐานข้อมูล Google Sheet แบบเรียลไทม์ 2 ทิศทาง</p>
+          </div>
+        </div>
+        <button onclick="closeGoogleSheetsModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="p-6 space-y-5 overflow-y-auto text-xs">
+        
+        <!-- Tab Selectors -->
+        <div class="flex items-center gap-2 p-1 bg-slate-100 rounded-2xl">
+          <button onclick="switchGSheetTab('sync')" id="tab-btn-gsync" class="flex-1 py-2 px-3 rounded-xl font-bold bg-white text-maroon-900 shadow-xs transition">
+            1. Live Sync (เชื่อมต่อ API)
+          </button>
+          <button onclick="switchGSheetTab('export')" id="tab-btn-gexport" class="flex-1 py-2 px-3 rounded-xl font-bold text-slate-600 hover:text-slate-900 transition">
+            2. Export Data (ดาวน์โหลดไฟล์)
+          </button>
+          <button onclick="switchGSheetTab('setup')" id="tab-btn-gsetup" class="flex-1 py-2 px-3 rounded-xl font-bold text-slate-600 hover:text-slate-900 transition">
+            3. Setup & Script (โค้ดและวิธีตั้งค่า)
+          </button>
+        </div>
+
+        <!-- TAB 1: LIVE SYNC -->
+        <div id="gsheet-tab-sync" class="space-y-4">
+          <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-200 space-y-2">
+            <div class="flex items-center gap-2 text-emerald-900 font-bold">
+              <i data-lucide="radio" class="w-4 h-4 text-emerald-600 animate-pulse"></i>
+              Real-time Google Apps Script Web App Connection
+            </div>
+            <p class="text-[11.5px] text-emerald-800 font-thai leading-relaxed">
+              ใส่ URL ของ Google Apps Script Web App ที่ Deploy จาก Google Sheets เพื่อดึงและอัปเดตข้อมูลนักศึกษาทั้งหมด 44 คน พร้อมผลคำนวณความเสี่ยง 5 มิติแบบเรียลไทม์
+            </p>
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">
+              Google Apps Script Web App URL:
+            </label>
+            <div class="flex gap-2">
+              <input 
+                type="url" 
+                id="gsheet-webapp-url" 
+                placeholder="https://script.google.com/macros/s/AKfycbx.../exec"
+                class="flex-1 bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 font-mono text-xs focus:outline-none focus:border-maroon-700"
+              />
+              <button onclick="testAndSyncGoogleSheets()" id="btn-sync-gsheet" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2.5 rounded-xl font-bold transition flex items-center gap-1.5 shadow-sm whitespace-nowrap">
+                <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+                <span>Fetch & Sync Data</span>
+              </button>
+            </div>
+            <p class="text-[10.5px] text-slate-400 mt-1">
+              * URL ตัวอย่างสำหรับทดสอบ: ระบบรองรับทั้ง JSON endpoint และ Google Sheets CSV Published Link
+            </p>
+          </div>
+
+          <!-- Connection Status Box -->
+          <div id="gsheet-status-box" class="p-4 bg-slate-50 rounded-2xl border border-slate-200 space-y-1 hidden">
+            <div class="font-bold text-slate-800 flex items-center gap-2">
+              <span id="gsheet-status-dot" class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+              <span id="gsheet-status-title">Connected to Google Sheets</span>
+            </div>
+            <div id="gsheet-status-details" class="text-[11px] text-slate-600 font-mono"></div>
+          </div>
+        </div>
+
+        <!-- TAB 2: EXPORT FOR GOOGLE SHEETS -->
+        <div id="gsheet-tab-export" class="space-y-4 hidden">
+          <div class="p-4 bg-blue-50 rounded-2xl border border-blue-200 space-y-2">
+            <div class="font-bold text-blue-900 flex items-center gap-2">
+              <i data-lucide="file-spreadsheet" class="w-4 h-4 text-blue-600"></i>
+              Download Ready-to-Use Google Sheets Master Dataset
+            </div>
+            <p class="text-[11.5px] text-blue-800 font-thai leading-relaxed">
+              ดาวน์โหลดไฟล์ CSV พร้อม Header ภาษาอังกฤษและภาษาไทย มีโครงสร้างครบถ้วนทั้ง 44 นักศึกษา, ข้อมูลวิทยานิพนธ์, วีซ่า, ทุนการศึกษา, สถานะลงทะเบียน 1/2026 และเกณฑ์วิชาการ
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <button onclick="downloadFullGoogleSheetCsv()" class="p-4 bg-white hover:bg-slate-50 border-2 border-emerald-500 rounded-2xl text-left transition shadow-xs space-y-1">
+              <div class="font-bold text-emerald-800 flex items-center justify-between">
+                <span>1. Master Dataset (44 Students)</span>
+                <i data-lucide="download" class="w-4 h-4"></i>
+              </div>
+              <div class="text-[11px] text-slate-500 font-thai">ข้อมูลครบถ้วนทุกมิติ พร้อมนำเข้า Google Sheet ได้ทันที</div>
+            </button>
+
+            <button onclick="downloadGoogleSheetTemplateOnly()" class="p-4 bg-white hover:bg-slate-50 border-2 border-maroon-700 rounded-2xl text-left transition shadow-xs space-y-1">
+              <div class="font-bold text-maroon-800 flex items-center justify-between">
+                <span>2. Blank Schema Template</span>
+                <i data-lucide="download" class="w-4 h-4"></i>
+              </div>
+              <div class="text-[11px] text-slate-500 font-thai">แม่แบบตารางเปล่า สำหรับกรอกข้อมูลนักศึกษาใหม่</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- TAB 3: SETUP INSTRUCTIONS & APPS SCRIPT CODE -->
+        <div id="gsheet-tab-setup" class="space-y-4 hidden">
+          <div class="space-y-2">
+            <h4 class="font-bold text-slate-900 text-xs">ขั้นตอนการเชื่อมต่อ Google Sheets ใน 4 ขั้นตอน:</h4>
+            <ol class="list-decimal list-inside space-y-1.5 text-[11.5px] text-slate-700 font-thai bg-slate-50 p-3.5 rounded-2xl border border-slate-200 leading-relaxed">
+              <li>เปิด Google Sheets ใหม่ และตั้งชื่อไฟล์ว่า <strong>"ENGiTRACK_Master_Database"</strong></li>
+              <li>ไปที่เมนู <strong>ส่วนขยาย (Extensions) > Apps Script</strong></li>
+              <li>ลบโค้ดเดิมทั้งหมด แล้วกดปุ่ม <strong>"Copy Google Apps Script Code"</strong> ด้านล่างไปวาง</li>
+              <li>กด <strong>บันทึก (Save)</strong> และกด <strong>การทำให้ใช้งานได้ (Deploy) > การทำให้ใช้งานได้รายการใหม่ (New deployment)</strong> เลือกชนิดเป็น <strong>เว็บแอป (Web app)</strong> กำหนดสิทธิ์ให้ <strong>ทุกคน (Anyone)</strong></li>
+            </ol>
+          </div>
+
+          <div class="flex items-center justify-between pt-2">
+            <button onclick="copyGoogleAppsScriptCode()" class="bg-gradient-maroon text-white px-4 py-2.5 rounded-xl font-bold flex items-center gap-2 shadow hover:opacity-95 transition">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+              <span>Copy Google Apps Script Code (คัดลอกโค้ด)</span>
+            </button>
+            <a href="file:///d:/kku-ai%20-%20antigravity/google_apps_script.js" target="_blank" class="text-maroon-700 font-bold hover:underline">
+              ดูไฟล์ google_apps_script.js ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="flex items-center justify-end pt-3 border-t border-slate-100">
+          <button onclick="closeGoogleSheetsModal()" class="px-5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl transition">
+            Close (ปิด)
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. OFFICIAL KKU AI CHATBOT EMBED COMPONENT (ENIR-Buddy) -->
+  <chat-widget-embed 
+    api-key="06997b2a-1e65-4fa4-9fc8-458897849f20" 
+    initial-message="Hello! My name is ENIR-Buddy. I can communicate in three languages: English, Thai, and Chinese. Feel free to ask me anything!"
+    theme-color="#6b0d1e" 
+    font-family="'Plus Jakarta Sans', 'Prompt', sans-serif">
+  </chat-widget-embed>
+
+  <!-- Hidden Photo File Input -->
+  <input type="file" id="avatar-file-input" accept="image/*" class="hidden" />
+
+  <!-- Global Toast Notification -->
+  <div id="app-toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-2 text-xs font-semibold transform translate-y-24 opacity-0 transition-all duration-300 border border-gold-accent/40">
+    <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-400"></i>
+    <span id="toast-message">Notification message</span>
+  </div>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

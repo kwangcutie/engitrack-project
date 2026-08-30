@@ -1,0 +1,371 @@
+                      ENGiTRACK by ENKKU
+
+ENGiTRACK =  
+
+
+                        "ENGiTRACK 
+                  
+                "
+:
+ Excel, ,  
+  Smart Tracking System 
+
+
+    
+ENGiTRACK    Visa
+1. 
+
+    Student Reporting / 
+    Visa / 
+    Registration /
+    Tuition Fee /
+        .
+2. 
+    
+    
+    /Scholarship 
+3. 
+ Milestone  
+Proposal Exam  English Test  Thesis Defense  Research Publication 
+Graduation  Commencement/
+
+    Logic 
+  One-size-fits-all
+
+    
+     8  / 4 
+     Semester
+      Logic 
+     Visa Extension  Semester 
+
+    
+ Logic  Milestone 
+
+
+    
+ Logic  
+
+
+    /Issue
+    
+    
+
+  : Risk Engine
+
+ ENGiTRACK Overall Risk Score
+
+ 100                            
+               
+
+  Visa Risk                     25
+
+  Academic Progress Risk        30
+
+  Scholarship / Financial Risk  20
+
+  Academic Milestone Risk       15
+
+  Issue / Case Risk             10
+
+                                100
+
+  Visa, Academic Progress, Scholarship  Issues
+ Milestone  Proposal, Thesis  Defense
+
+ 1. Visa Risk Score -- 25 
+
+ Visa 
+
+     
+
+ 90  0
+
+61-90        5
+        
+46-60   10
+31-45   15
+15-30   20
+1-14    25
+Visa    25
+
+  Visa
+:
+
+    /  0
+      +2
+      +5
+    /  +5
+
+ Visa  25
+
+ Trigger :  45   
+
+ 2. Academic Progress Risk -- 30 
+
+  Pain Point  
+
+A.          
+         
+
+Progress  0
+
+            5
+
+            10
+
+B. 
+
+ Semester  /
+
+                
+
+                0
+          
+
+  2  5
+
+ 1  10
+
+       20
+
+
+.  8 
+ 7   = 5 
+ 8  Warning = 10 
+ 9   = 20 
+
+ Academic Progress  30 
+
+ Logic   8 /4 
+ Logic 
+
+ 3. Scholarship / Financial Risk -- 20 
+
+ 
+
+       
+
+ /  0
+
+ 2  0
+
+ 2     5
+
+ 1     10
+
+  20
+
+
+
+  /   +0
+   +3
+  /   +5
+
+ 20
+ Trigger:  1 Semester  
+ 4. Academic Milestone Risk -- 15 
+
+ Logic   Milestone 
+
+Milestone 
+
+ English Requirement ()
+ Qualification Exam ()
+ Proposal Exam ()
+ Thesis / Dissertation Defense ()
+ Graduation ()
+
+ Milestone 
+
+                
+              
+
+/               0
+
+                0
+
+                5
+
+ Milestone      10
+
+ Milestone  15
+
+:
+. 1   Proposal  QE  Milestone Risk 
+
+Milestone 
+
+ English Requirement
+ Computer Requirement
+ Internship / Cooperative Education
+ Credit / Coursework Completion
+ Graduation
+
+                
+                0
+                0
+/
+
+                
+                5
+ Milestone      10
+ Milestone      15
+
+Critical Milestone
+    English Requirement  + 
+    Computer Requirement  + 
+     Internship/Co-op + 
+
+ 5. Issue / Case Risk -- 10 
+
+ Issue Category / Severity / Status / Last Follow-up   
+
+
+   Issue 
+
+ 0
+
+Low 2
+
+Medium 5
+
+High 8
+
+Critical 10
+
+ Follow-up
+ Case  Open  Follow-up  
+ 
+
+  Overall Risk  
+
+ Risk Level
+
+0-24  Low Risk  
+        Risk Level         
+25-49   Medium Risk    
+50-74   High Risk      
+75-100  Critical Risk  
+
+     Demo
+ Dashboard  ENGiTRACK :
+Dashboard Overview
+
+    
+    
+    
+    
+     Student Journey
+Student Profile
+ Timeline 
+Arrival / Reporting
+
+
+Visa Status
+
+
+Registration
+
+
+Tuition / Scholarship
+
+
+Academic Progress
+
+
+Proposal / Thesis / Defense
+
+
+Graduation
+ Alert 
+
+     Hackathon
+:
+
+ 
+ Sensitive Data
+  Synthetic Data 100%
+ 44   Demo 
+/:
+DEMO DATA
+SYNTHETIC DATA -- For Demonstration Only
+  Use Case 
+
+
+
+   ENGiTRACK 
+
+:
+
+Student Profile
+    Student ID
+    Name
+    Nationality
+    Program
+    Degree Level
+    Semester
+    Entry Date
+
+Visa
+    Visa Type
+    Visa Expiry Date
+    Days Remaining
+    Extension Status
+
+Academic Progress
+    Current Semester
+    GPA / Progress Status
+    Thesis Status
+    Defense Status
+
+Scholarship
+    Scholarship Type
+    Scholarship Status
+
+Issues
+    Issue Category
+    Severity
+    Status
+    Last Follow-up
+  Synthetic Data 
+ : Excel/Google Sheet  44 
+
+Funding Risk Score
+
+                              
+ 2                              0
+ 2                             20
+ 1                             50
+                               70
+ 1                             +20
+ 1   Milestone                 +30
+
+Visa Risk Score                     
+                    0
+                    10   Normal 
+ 90                 25
+61-90               50   Low  
+46-60               70
+31-45               90   Monitor 
+15-30               100
+1-14                     Warning 
+
+                         High Risk 
+
+                         Critical 
+
+                         Critical 
+
+
+  
+
+0-29   Normal
+
+30-49  Monitor
+
+50-69  Warning
+
+70-89  High Risk
+
+90-100 Critical
+

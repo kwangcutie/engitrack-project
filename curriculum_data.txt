@@ -1,0 +1,73 @@
+
+
+degree  Major                               
+B.Eng.  Civil Engineering               ..  
+B.Eng.  Electrical Engineering          ..  
+B.Eng.  Agricultural Engineering        ..  
+B.Eng.  Industrial Engineering          ..  
+B.Eng.  Mechanical Engineering          ..  
+B.Eng.  Environment Engineering         ..  
+B.Eng.  Chemical Engineering            ..  
+B.Eng.  Computer Engineering            ..  
+B.Eng.  Automation Robotics and         ..   
+        Intelligent System Engineering      
+B.Eng.  Electronic Systems Engineering  ..  
+B.Eng.  High Speed Rail Engineering     ..  
+B.Eng.  Semiconductor Engineering       ..  
+B.Eng.  Electrical Communications       ..  
+        Engineering
+B.Eng.  Chemical Engineering            ..   ()
+        (International Program)
+B.Eng.  Digital Media Engineering       ..   ()
+        (International Program)
+B.Eng.  Logistics Engineering           ..  
+        (International Program)             ()
+B.Eng.  Telecommunications              ..  
+        Engineering (International          ()
+M.Eng.  Program)                        ..
+M.Eng.  Civil Engineering               ..  
+M.Eng.  Electrical Engineering          ..  
+M.Eng.  Agricultural Engineering        ..  
+M.Eng.  Industrial Engineering          ..  
+M.Eng.  Mechanical Engineering          ..  
+M.Eng.  Environment Engineering         ..  
+M.Eng.  Chemical Engineering            ..  
+M.Eng.  Computer Engineering            ..  
+M.Eng.  Energy Engineering              ..  
+        Industrial and Logistics            
+        Engineering Management              
+degree  Major                                    
+M.Eng.  Materials and Manufacturing          ..  
+        Engineering
+M.Eng.  Biomedical Engineering               ..  
+M.Eng.  Water Resource Management            ..  
+M.Eng.  Construction Management              ..  
+        Innovation Engineering                   
+M.Eng.  BCG Economic Development             ..  
+        Innovation Engineering                    BCG
+M.Eng.  Digital and Artificial intelligence  ..  
+        Innovation Engineering                   
+M.Eng.  Financial Innovation Engineering     ..  
+M.Eng.  Smart City Development               ..  
+        Innovation Engineering                   
+Ph.D.   Civil Engineering                    ..  
+Ph.D.   Electrical Engineering               ..  
+Ph.D.   Agricultural Engineering             ..  
+Ph.D.   Industrial Engineering               ..  
+Ph.D.   Mechanical Engineering               ..  
+Ph.D.   Environment Engineering              ..  
+Ph.D.   Chemical Engineering                 ..  
+Ph.D.   Computer Engineering                 ..  
+Ph.D.   Energy Engineering                   ..  
+Ph.D.   Biomedical Engineering               ..  
+Ph.D.   Water Resource Management            ..  
+Ph.D.   Construction Management              ..  
+        Innovation Engineering                   
+Ph.D.   BCG Economic Development             ..  
+        Innovation Engineering                    BCG
+Ph.D.   Digital and Artificial intelligence  ..  
+        Innovation Engineering                   
+Ph.D.   Financial Innovation Engineering     ..  
+Ph.D.   Smart City Development               ..  
+        Innovation Engineering                   
+
